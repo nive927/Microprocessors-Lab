@@ -1,5 +1,9 @@
+; Program to display the system date
+
 assume cs:code,ds:data
 data segment
+	; reserving n consecutive bytes (memory locations) in the memory
+	; and assigning a NULL value (?) to all of them.
 	day db 01 dup(?)
 	month db 01 dup(?)
 	year db 02 dup(?)
@@ -28,6 +32,12 @@ start:
 	mov [si],dh
 	mov si,offset year
 	mov [si],cx
+	
+	; can use mov inst directly, SIMPLIFIED
+	; mov day,dl
+	; mov month,dh
+	; this will cause error, need to use si
+	; mov year,cx
 	
 	mov ah,4ch
 	int 21h
