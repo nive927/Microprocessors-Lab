@@ -4,14 +4,18 @@
 
 ASSUME CS:CODE,DS:data
 data SEGMENT
-	COUNT equ 10h	; (hex)10 is (dec)16
+	COUNT equ 10h	; not a variable but a synonym for hex(10) which is dec(16)
+			; doesn't occupy any memory space
+			; When EQU referes to a constant value, it becomes a synonym for that value. This value can't be overwritten, even if you try it won't change
+			; When EQU referes to another variable, it becomes a synonym for that variable, so everything that happens to the synonym will happen to the variable.
 data ends
 CODE SEGMENT
+	org 0100h
 START:
 	MOV AX,data
 	MOV DS,AX
 
-	MOV CX,COUNT 	; LOOP COUNTER
+	MOV CX,COUNT	; LOOP COUNTER
 L1:
 	MOV AH,1	; Read INPUT CHARACTER with echo,
 	INT 21H		; AL = CHARACTER, ASCII(hex) :A-Z=41-5A, a-z=61-7A 
