@@ -1,3 +1,5 @@
+; Program to display the system time
+
 assume cs:code,ds:data
 data segment
 	hour db 01 dup(?)
@@ -20,14 +22,18 @@ start:
 	; CL = minute
 	; DH = second
 	
-	mov si,offset hour
-	mov [si],ch
-	mov si,offset minute
-	mov [si],cl
-	mov si,offset second
-	mov [si],dh
-	mov ah,4ch
+	;mov si,offset hour
+	;mov [si],ch
+	;mov si,offset minute
+	;mov [si],cl
+	;mov si,offset second
+	;mov [si],dh
 	
+	mov hour,ch
+	mov minute,cl
+	mov second,dh
+	
+	mov ah,4ch
 	int 21h
 	code ends
 end start
